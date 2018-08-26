@@ -1,0 +1,657 @@
+Calculator
+
+package androidcourse.net.assignment1;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class CalculatorActivity extends AppCompatActivity {
+
+    EditText textView;
+    TextView textView1;
+    EditText textView2;
+    TextView textView3;
+    Button btn1;
+    Button btn2;
+    Button btn3;
+    Button btn4;
+    Button btn5;
+
+    float rs;
+    int fs , sd ;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calculator);
+
+        //creat a back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        textView = findViewById(R.id.edt1);
+        textView1 = findViewById(R.id.textView2);
+        textView2 = findViewById(R.id.edt2);
+        textView3 = findViewById(R.id.textView4);
+        btn1 = findViewById(R.id.plus);
+        btn2 = findViewById(R.id.minus);
+        btn3 = findViewById(R.id.multiply);
+        btn4 = findViewById(R.id.divide);
+        btn5 = findViewById(R.id.module);
+
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fs = Integer.parseInt(textView.getText().toString());
+                sd = Integer.parseInt(textView2.getText().toString());
+
+                rs = fs + sd ;
+
+
+                textView1.setText("+");
+                textView3.setText(String.valueOf(rs));
+
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fs = Integer.parseInt(textView.getText().toString());
+                sd = Integer.parseInt(textView2.getText().toString());
+
+                rs = fs - sd ;
+
+
+                textView1.setText("-");
+                textView3.setText(String.valueOf(rs));
+
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fs = Integer.parseInt(textView.getText().toString());
+                sd = Integer.parseInt(textView2.getText().toString());
+
+                rs = fs * sd ;
+
+
+                textView1.setText("*");
+                textView3.setText(String.valueOf(rs));
+
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fs = Integer.parseInt(textView.getText().toString());
+                sd = Integer.parseInt(textView2.getText().toString());
+
+                rs = fs / sd ;
+
+
+                textView1.setText("/");
+                textView3.setText(String.valueOf(rs));
+
+            }
+        });
+
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fs = Integer.parseInt(textView.getText().toString());
+                sd = Integer.parseInt(textView2.getText().toString());
+
+                rs = fs % sd ;
+
+
+                textView1.setText("%");
+                textView3.setText(String.valueOf(rs));
+
+            }
+        });
+
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem mntm) {
+        if(mntm.getItemId() == android.R.id.home)
+        {
+            this.finish();
+        }
+        return  super.onOptionsItemSelected(mntm);
+    }
+
+
+}
+
+info in java
+package androidcourse.net.assignment1;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class Info_In extends AppCompatActivity {
+
+    TextView lln;
+    TextView luser;
+    TextView lemail;
+    TextView lpass;
+    TextView lgndr;
+    Button lbutton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_info__in);
+
+        lln = findViewById(R.id.ltxvw);
+        luser = findViewById(R.id.ltxvw1);
+        lemail = findViewById(R.id.ltxvw2);
+        lpass = findViewById(R.id.ltxvw3);
+        lgndr = findViewById(R.id.ltxvw4);
+        lbutton = findViewById(R.id.lbtn);
+
+        Intent  intn = getIntent();
+        String fn = intn.getStringExtra("fnm");
+        String ln = intn.getStringExtra("lnm");
+        final String usr = intn.getStringExtra("user");
+        final String passw = intn.getStringExtra("pass");
+        String email = intn.getStringExtra("emal");
+        String gndr = intn.getStringExtra("gender");
+
+
+
+
+        lln.setText("Welcome "+fn+" "+ln);
+        luser.setText("Your user is: "+usr);
+        lemail.setText("Your email is: "+email);
+        lpass.setText("Your password is :"+passw);
+        lgndr.setText("You are a "+gndr);
+
+        lbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intn1 = new Intent(Info_In.this,Log_In.class);
+                intn1.putExtra("user",usr);
+                intn1.putExtra("pass",passw);
+                startActivity(intn1);
+            }
+        });
+
+    }
+}
+ last activity
+package androidcourse.net.assignment1;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class LastActivity extends AppCompatActivity {
+
+    Button ltbtn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_last);
+
+
+        ltbtn = findViewById(R.id.ltbtn);
+
+        ltbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intn = new Intent(LastActivity.this,MainActivity.class);
+                startActivity(intn);
+            }
+        });
+    }
+}
+
+log in java
+package androidcourse.net.assignment1;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class Log_In extends AppCompatActivity {
+
+    EditText user;
+    EditText pass;
+    Button btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log__in);
+
+        user = findViewById(R.id.usr);
+        pass = findViewById(R.id.pas);
+        btn = findViewById(R.id.ubtn);
+
+        Intent intent =getIntent();
+        String us = intent.getStringExtra("user");
+        String pas = intent.getStringExtra("pass");
+
+        user.setText(us);
+        pass.setText(pas);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intn = new Intent(Log_In.this,LastActivity.class);
+                startActivity(intn);
+            }
+        });
+
+    }
+}
+
+main activity 
+package androidcourse.net.assignment1;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidcourse.net.assignment1.Personal_info.AddressActivity;
+import androidcourse.net.assignment1.Personal_info.Education_info;
+import androidcourse.net.assignment1.Personal_info.Personal_info;
+import androidcourse.net.assignment1.Personal_info.Skills_info;
+import androidcourse.net.assignment1.Personal_info.Vision_info;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView img;
+    Button btre;
+    Button btcal;
+    Button btcol;
+    Button pinfo;
+    Button ainfo;
+    Button einfo;
+    Button vinfo;
+    Button exinfo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        img = findViewById(R.id.imgvw);
+        btre = findViewById(R.id.btnre);
+        btcal = findViewById(R.id.btnCal);
+        btcol = findViewById(R.id.btncolor);
+        pinfo = findViewById(R.id.pbtn);
+        ainfo = findViewById(R.id.pbtn1);
+        einfo = findViewById(R.id.pbtn2);
+        vinfo = findViewById(R.id.pbtn4);
+        exinfo = findViewById(R.id.pbtn3);
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Hi , I am Ariful ?? ?? WELCOME!!!",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btcal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intn = new Intent (MainActivity.this,CalculatorActivity.class);
+                startActivity(intn);
+
+            }
+        });
+        btre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intn = new Intent(MainActivity.this,Registration_form.class);
+                startActivity(intn);
+            }
+        });
+
+        btcol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Log_In.class);
+                startActivity(intent);
+
+            }
+        });
+        pinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Personal_info.class);
+                startActivity(intent);
+
+            }
+        });
+        ainfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddressActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        einfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Education_info.class);
+                startActivity(intent);
+
+            }
+        });
+        vinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Vision_info.class);
+                startActivity(intent);
+
+            }
+        });
+        exinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Skills_info.class);
+                startActivity(intent);
+
+            }
+        });
+
+    }
+}
+
+registration from
+package androidcourse.net.assignment1;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class Registration_form extends AppCompatActivity {
+
+    EditText fnm;
+    EditText lnm;
+    EditText eml;
+    EditText user;
+    EditText pass;
+    TextView txtvw;
+    RadioGroup rdgr;
+    RadioButton rd1;
+    Button submit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration_form);
+
+        fnm = findViewById(R.id.ed1);
+        lnm = findViewById(R.id.ed2);
+        eml = findViewById(R.id.ed3);
+        user = findViewById(R.id.ed4);
+        pass = findViewById(R.id.ed5);
+        txtvw = findViewById(R.id.txvw1);
+        rdgr = findViewById(R.id.rdgp);
+        submit = findViewById(R.id.sbtn);
+
+
+
+
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                 String fnm1 = fnm.getText().toString();
+                 String lnm1 = lnm.getText().toString();
+                 String user1 = user.getText().toString();
+                String pass1 = pass.getText().toString();
+                String email = eml.getText().toString();
+
+                // for gender from radio button grp
+               int val =  rdgr.getCheckedRadioButtonId();
+               rd1 = findViewById(val);
+               String gendr = rd1.getText().toString();
+
+
+               Intent  intn = new Intent(Registration_form.this,Info_In.class);
+                intn.putExtra("fnm",fnm1);
+                intn.putExtra("lnm",lnm1);
+                intn.putExtra("user",user1);
+                intn.putExtra("pass",pass1);
+                intn.putExtra("emal",email);
+                intn.putExtra("gender",gendr);
+                startActivity(intn);
+
+            }
+        });
+    }
+}
+
+adreess activity 
+
+package androidcourse.net.assignment1.Personal_info;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidcourse.net.assignment1.R;
+
+public class AddressActivity extends AppCompatActivity {
+    TextView atxv;
+    TextView atxv2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_address);
+        atxv = findViewById(R.id.atx);
+        atxv2 = findViewById(R.id.atx2);
+
+        atxv.setText("Present Address: 17,shuklal das lan,Sutrapur,Dhaka-1100.");
+        atxv2.setText("Permanent Address : Vill+post-dogaci , P.S.-Sreenagar , Dist.-Munshiganaj.");
+
+    }
+}
+
+education 
+
+package androidcourse.net.assignment1.Personal_info;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidcourse.net.assignment1.R;
+
+public class Education_info extends AppCompatActivity {
+    TextView etxvw;
+    TextView etxvw1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_education_info);
+
+        etxvw = findViewById(R.id.etxt);
+        etxvw1 = findViewById(R.id.etxt2);
+
+        etxvw.setText("Dhaka Imperial College\n" +
+                "Duration: 2011 – 2013\n" +
+                "Subject: Science\n" +
+                "Result:4.60");
+
+        etxvw1.setText("Dhaka Collegiate School\n" +
+                "Duration: 2009 – 2011\n" +
+                "Subject: Science\n" +
+                "Result:4.56");
+
+    }
+}
+
+
+personal
+
+package androidcourse.net.assignment1.Personal_info;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidcourse.net.assignment1.R;
+
+public class Personal_info extends AppCompatActivity {
+
+        TextView txvw;
+        TextView txvw1;
+        TextView txvw2;
+        TextView txvw3;
+        TextView txvw4;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_personal_info);
+
+        txvw = findViewById(R.id.ptx);
+        txvw1 = findViewById(R.id.ptx1);
+        txvw2 = findViewById(R.id.ptx2);
+        txvw3 = findViewById(R.id.ptx3);
+        txvw4 = findViewById(R.id.ptx4);
+
+        txvw.setText("Name: Ariful Azed.");
+        txvw1.setText("Father's Name : Abul Kalam Azad.");
+        txvw2.setText("Mother's Name: Shanu Azed.");
+        txvw3.setText("Religion : Islam. ");
+        txvw4.setText("Nationality: Bangladeshi. ");
+    }
+}
+
+skillls
+
+package androidcourse.net.assignment1.Personal_info;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidcourse.net.assignment1.R;
+
+public class Skills_info extends AppCompatActivity {
+    TextView stxv;
+    TextView stxv1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_skills_info);
+        stxv = findViewById(R.id.stxt);
+        stxv1 = findViewById(R.id.stxt2);
+
+        stxv.setText("Bengali- Mother Tongue");
+        stxv1.setText("English-Well versed in both written and spoken English.");
+
+    }
+}
+
+
+
+vision
+
+package androidcourse.net.assignment1.Personal_info;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidcourse.net.assignment1.R;
+
+public class Vision_info extends AppCompatActivity {
+
+    TextView vtxvw;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vision_info);
+        vtxvw = findViewById(R.id.vtxt);
+
+        vtxvw.setText(" 5 years from now I want a have my own Startup ");
+    }
+}
+
+
+manifest
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="androidcourse.net.assignment1">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_foreground1"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_health_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CalculatorActivity" />
+        <activity android:name=".Registration_form" />
+        <activity android:name=".Info_In" />
+        <activity android:name=".Log_In" />
+        <activity android:name=".LastActivity" />
+        <activity android:name=".Personal_info.Personal_info" />
+        <activity android:name=".Personal_info.AddressActivity" />
+        <activity android:name=".Personal_info.Education_info" />
+        <activity android:name=".Personal_info.Skills_info" />
+        <activity android:name=".Personal_info.Vision_info"></activity>
+    </application>
+
+</manifest>
